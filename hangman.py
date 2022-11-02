@@ -9,12 +9,20 @@ def path():
 
 
 def get_users_input():
-    guess = input("Guess a letter:").lower()
-    return guess
+    while True:
+        guess = input("Guess a letter:").lower()
+        if guess == "quit":
+            quit()
+        if guess.isalpha():
+            if guess in already_guessed:
+                print("You have guessed this letter before")
+            else:
+                return guess
+        else:
+            print("You have to enter a letter")
 
 
-def validate_users_input(list_of_words):
-    already_guessed = []
+def game(list_of_words):
     life = 5
     while True:
         guess = get_users_input()
@@ -38,10 +46,11 @@ def validate_users_input(list_of_words):
             quit()
 
 
+already_guessed = []
 
 def main():
     wordlist, fieldlist = path()
-    validate_users_input(wordlist)
+    game(wordlist)
 
 
 if __name__ == "__main__":
