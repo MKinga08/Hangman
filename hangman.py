@@ -1,11 +1,11 @@
-word = "thisishard" #19
+word = "thisishard"
 
 
-def game():
-    field = len(word)*"_"
-    print(field)
+def path():
+    list_of_underscores = len(word) * "_"
     list_of_words = [i for i in word]
-    return list_of_words
+    print(list_of_underscores)
+    return list_of_words, list_of_underscores
 
 
 def get_users_input(list_of_words):
@@ -21,7 +21,7 @@ def get_users_input(list_of_words):
 
 
 def main():
-    wordlist = game()
+    wordlist, fieldlist = path()
     get_users_input(wordlist)
 
 
