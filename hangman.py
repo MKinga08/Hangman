@@ -15,6 +15,7 @@ def get_users_input():
 
 def validate_users_input(list_of_words):
     already_guessed = []
+    life = 5
     while True:
         guess = get_users_input()
         for i in range(len(list_of_words)):
@@ -25,6 +26,17 @@ def validate_users_input(list_of_words):
         if len(already_guessed) == len(word):
             print("You guessed the word!")
             break
+        if life > 0:
+            if guess not in list_of_words:
+                life -= 1
+                if 5 >= life > 1:
+                    print(f"You have {life} lives left")
+                elif life == 1:
+                    print(f"You have {life} life left")
+        if life == 0:
+            print("You lost the game")
+            quit()
+
 
 
 def main():
