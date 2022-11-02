@@ -1,4 +1,4 @@
-word = "thisishard"
+word = "bab"
 
 
 def path():
@@ -8,21 +8,27 @@ def path():
     return list_of_words, list_of_underscores
 
 
-def get_users_input(list_of_words):
-    c = 0
+def get_users_input():
+    guess = input("Guess a letter:").lower()
+    return guess
+
+
+def validate_users_input(list_of_words):
+    already_guessed = []
     while True:
-        guess = input("Guess a letter:").lower()
+        guess = get_users_input()
         for i in range(len(list_of_words)):
             if list_of_words[i] == guess:
-                c += 1
-        if c == len(word):
+                already_guessed.append(guess)
+        print(f"Already guessed letter(s):{already_guessed}")
+        if len(already_guessed) == len(word):
             print("You guessed the word!")
             break
 
 
 def main():
     wordlist, fieldlist = path()
-    get_users_input(wordlist)
+    validate_users_input(wordlist)
 
 
 if __name__ == "__main__":
