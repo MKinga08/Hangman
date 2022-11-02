@@ -1,4 +1,4 @@
-word = "bab"
+word = "babo"
 
 
 def path():
@@ -21,6 +21,7 @@ def validate_users_input(list_of_words):
             if list_of_words[i] == guess:
                 already_guessed.append(guess)
         print(f"Already guessed letter(s):{already_guessed}")
+        print(''.join(c if c in already_guessed else '_' for c in word))
         if len(already_guessed) == len(word):
             print("You guessed the word!")
             break
