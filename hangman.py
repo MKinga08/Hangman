@@ -14,7 +14,7 @@ def get_users_input():
         if guess == "quit":
             quit()
         if guess.isalpha():
-            if guess in already_guessed:
+            if guess in correct:
                 print("You have guessed this letter before")
             else:
                 return guess
@@ -25,10 +25,9 @@ def get_users_input():
 def game(list_of_words, guess):
     for i in range(len(list_of_words)):
         if list_of_words[i] == guess:
-            already_guessed.append(guess)
-    print(f"Already guessed letter(s):{already_guessed}")
-    print(''.join(c if c in already_guessed else '_' for c in word))
-    if len(already_guessed) == len(word):
+            correct.append(guess)
+    print(''.join(c if c in correct else '_' for c in word))
+    if len(correct) == len(word):
         print("You guessed the word!")
         quit()
 
@@ -46,7 +45,7 @@ def lives(list_of_words, guess):
         quit()
 
 
-already_guessed = []
+correct = []
 life = 5
 
 
