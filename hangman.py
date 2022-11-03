@@ -35,17 +35,22 @@ def game(list_of_words, guess):
 def lives(list_of_words, guess):
     global life
     if guess not in list_of_words:
-        life -= 1
-        if 5 >= life > 1:
-            print(f"You have {life} lives left")
-        elif life == 1:
-            print(f"You have {life} life left")
+        if guess not in already_guessed:
+            life -= 1
+            already_guessed.append(guess)
+            if 5 >= life > 1:
+                print(f"You have {life} lives left")
+            elif life == 1:
+                print(f"You have {life} life left")
+        else:
+            print("You have guessed this letter before")
     if life == 0:
         print("You lost the game")
         quit()
 
 
 correct = []
+already_guessed = []
 life = 5
 
 
