@@ -68,5 +68,6 @@ def main():
         screen_cleaner()
         print(''.join(c if c in correct else '_' for c in word))
 
+
 if __name__ == "__main__":
     main()
