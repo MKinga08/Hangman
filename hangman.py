@@ -1,3 +1,4 @@
+import os
 word = "babo"
 
 
@@ -49,6 +50,10 @@ def lives(list_of_words, guess):
         quit()
 
 
+def screen_cleaner():
+    os.system('cls')
+
+
 correct = []
 already_guessed = []
 life = 5
@@ -60,7 +65,8 @@ def main():
         guessing = get_users_input()
         game(wordlist, guessing)
         lives(wordlist, guessing)
-
+        screen_cleaner()
+        print(''.join(c if c in correct else '_' for c in word))
 
 if __name__ == "__main__":
     main()
