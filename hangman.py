@@ -1,5 +1,10 @@
 import os
-word = "babo"
+import random
+
+
+def choosing_random_word():
+    word = random.choice(open("words.txt").read().split())
+    return word
 
 
 def hangman_print():
@@ -18,7 +23,7 @@ def hangman_print():
                                             <\__ __/>                                           """)
 
 
-def path():
+def path(word):
     list_of_underscores = len(word) * "_ "
     list_of_words = [i for i in word]
     print(list_of_underscores)
@@ -41,7 +46,7 @@ def get_users_input():
             print("\nYou have to enter a letter")
 
 
-def game(list_of_words, guess):
+def game(list_of_words, guess, word):
     for i in range(len(list_of_words)):
         if list_of_words[i] == guess:
             correct.append(guess)
@@ -50,7 +55,7 @@ def game(list_of_words, guess):
         play_again()
 
 
-def lives(list_of_words, guess):
+def lives(list_of_words, guess, word):
     global life
     if guess not in list_of_words:
         if guess not in already_guessed:
@@ -64,6 +69,7 @@ def lives(list_of_words, guess):
             print("\nYou have guessed this letter before")
     if life == 0:
         print("\n\nYou lost the game :(")
+        print(f"The word was: {word}")
         play_again()
 
 
@@ -79,9 +85,9 @@ def play_again():
         quit()
 
 
-def information(list_of_words, guess):
+def information(list_of_words, guess, word):
     print(''.join(c if c in correct else '_ ' for c in word))
-    lives(list_of_words, guess)
+    lives(list_of_words, guess, word)
     print("\nAlready guessed letters:\n")
     print(", ".join(already_guessed))
 
@@ -92,14 +98,15 @@ life = 5
 
 
 def main():
+    choose = choosing_random_word()
     hangman_print()
-    wordlist = path()
+    wordlist = path(choose)
     while True:
         guessing = get_users_input()
-        game(wordlist, guessing)
+        game(wordlist, guessing, choose)
         screen_cleaner()
-        information(wordlist, guessing)
-        if life == 0 or len(correct) == len(word):
+        information(wordlist, guessing, choose)
+        if life == 0 or len(correct) == len(choose):
             play_again()
 
 
