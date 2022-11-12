@@ -52,7 +52,6 @@ def game(list_of_words, guess, word):
             correct.append(guess)
     if len(correct) == len(word):
         print("\n\nYou guessed the word!")
-        play_again()
 
 
 def lives(list_of_words, guess, word):
@@ -61,7 +60,7 @@ def lives(list_of_words, guess, word):
         if guess not in already_guessed:
             life -= 1
             already_guessed.append(guess)
-            if 5 >= life > 1:
+            if 10 >= life > 1:
                 print(f"\nYou have {life} lives left")
             elif life == 1:
                 print(f"\nYou have {life} life left")
@@ -70,7 +69,6 @@ def lives(list_of_words, guess, word):
     if life == 0:
         print("\n\nYou lost the game :(")
         print(f"The word was: {word}")
-        play_again()
 
 
 def screen_cleaner():
@@ -94,7 +92,7 @@ def information(list_of_words, guess, word):
 
 correct = []
 already_guessed = []
-life = 5
+life = 10
 
 
 def main():
@@ -103,8 +101,8 @@ def main():
     wordlist = path(choose)
     while True:
         guessing = get_users_input()
-        game(wordlist, guessing, choose)
         screen_cleaner()
+        game(wordlist, guessing, choose)
         information(wordlist, guessing, choose)
         if life == 0 or len(correct) == len(choose):
             play_again()
