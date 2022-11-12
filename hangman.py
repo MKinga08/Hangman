@@ -60,13 +60,27 @@ def lives(list_of_words, guess, word):
         if guess not in already_guessed:
             life -= 1
             already_guessed.append(guess)
-            if 10 >= life > 1:
+            if 8 >= life > 1:
+                if life == 7:
+                    hangman2()
+                elif life == 6:
+                    hangman3()
+                elif life == 5:
+                    hangman4()
+                elif life == 4:
+                    hangman5()
+                elif life == 3:
+                    hangman6()
+                elif life == 2:
+                    hangman7()
                 print(f"\nYou have {life} lives left")
             elif life == 1:
+                hangman8()
                 print(f"\nYou have {life} life left")
         else:
             print("\nYou have guessed this letter before")
     if life == 0:
+        hangman9()
         print("\n\nYou lost the game :(")
         print(f"The word was: {word}")
 
@@ -90,14 +104,123 @@ def information(list_of_words, guess, word):
     print(", ".join(already_guessed))
 
 
+def hangman1():
+    print(r"""
+    --------
+    |      
+    |      
+    |     
+    |      
+    |     
+    -
+    """)
+
+
+def hangman2():
+    print(r"""
+    --------
+    |      |
+    |      
+    |     
+    |      
+    |     
+    -
+    """)
+
+
+def hangman3():
+    print(r"""
+    --------
+    |      |
+    |      O
+    |     
+    |      
+    |     
+    -
+    """)
+
+
+def hangman4():
+    print(r"""
+    --------
+    |      |
+    |      O
+    |      |
+    |      
+    |     
+    -
+    """)
+
+
+def hangman5():
+    print(r"""
+    --------
+    |      |
+    |      O
+    |     \|
+    |      
+    |     
+    -
+    """)
+
+
+def hangman6():
+    print(r"""
+    --------
+    |      |
+    |      O
+    |     \|/
+    |      
+    |     
+    -
+    """)
+
+
+def hangman7():
+    print(r"""
+    --------
+    |      |
+    |      O
+    |     \|/
+    |      |
+    |     
+    -
+    """)
+
+
+def hangman8():
+    print(r"""
+    --------
+    |      |
+    |      O
+    |     \|/
+    |      |
+    |     / 
+    -
+    """)
+
+
+def hangman9():
+    print(r"""
+    --------
+    |      |
+    |      O
+    |     \|/
+    |      |
+    |     / \
+    -
+    """)
+
+
 correct = []
 already_guessed = []
-life = 10
+life = 8
 
 
 def main():
-    choose = choosing_random_word()
     hangman_print()
+    choose = choosing_random_word()
+    hangman1()
     wordlist = path(choose)
     while True:
         guessing = get_users_input()
