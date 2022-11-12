@@ -2,6 +2,22 @@ import os
 word = "babo"
 
 
+def hangman_print():
+    print("""
+      o         o                                                                               
+     <|>       <|>                                                                              
+     < >       < >                                                                              
+      |         |      o__ __o/  \o__ __o     o__ __o/  \o__ __o__ __o      o__ __o/  \o__ __o  
+      o__/_ _\__o     /v     |    |     |>   /v     |    |     |     |>    /v     |    |     |> 
+      |         |    />     / \  / \   / \  />     / \  / \   / \   / \   />     / \  / \   / \ 
+               \      \o/  \o/   \o/  \      \o/  \o/   \o/   \o/   \      \o/  \o/   \o/ 
+      |         |     o      |    |     |    o      |    |     |     |     o      |    |     |  
+     / \       / \    <\__  / \  / \   / \   <\__  < >  / \   / \   / \    <\__  / \  / \   / \ 
+                                                    |                                           
+                                            o__     o                                           
+                                            <\__ __/>                                           """)
+
+
 def path():
     list_of_underscores = len(word) * "_"
     list_of_words = [i for i in word]
@@ -27,7 +43,6 @@ def game(list_of_words, guess):
     for i in range(len(list_of_words)):
         if list_of_words[i] == guess:
             correct.append(guess)
-    print(''.join(c if c in correct else '_' for c in word))
     if len(correct) == len(word):
         print("You guessed the word!")
         quit()
@@ -54,19 +69,25 @@ def screen_cleaner():
     os.system('cls')
 
 
+def information(list_of_words, guess):
+    print(''.join(c if c in correct else '_' for c in word))
+    lives(list_of_words, guess)
+    print(f"Already guessed letters:{already_guessed}")
+
+
 correct = []
 already_guessed = []
 life = 5
 
 
 def main():
+    hangman_print()
     wordlist = path()
     while True:
         guessing = get_users_input()
         game(wordlist, guessing)
-        lives(wordlist, guessing)
         screen_cleaner()
-        print(''.join(c if c in correct else '_' for c in word))
+        information(wordlist, guessing)
 
 
 if __name__ == "__main__":
