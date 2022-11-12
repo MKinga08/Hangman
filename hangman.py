@@ -27,18 +27,18 @@ def path():
 
 def get_users_input():
     while True:
-        guess = input("Guess a letter:").lower()
+        guess = input("\nGuess a letter:").lower()
         if guess == "quit":
             quit()
         if guess.isalpha():
             if len(guess) > 1:
-                print("You have to guess a letter")
+                print("\nYou have to guess a letter")
             elif guess in correct:
-                print("You have guessed this letter before")
+                print("\nYou have guessed this letter before")
             else:
                 return guess
         else:
-            print("You have to enter a letter")
+            print("\nYou have to enter a letter")
 
 
 def game(list_of_words, guess):
@@ -46,7 +46,7 @@ def game(list_of_words, guess):
         if list_of_words[i] == guess:
             correct.append(guess)
     if len(correct) == len(word):
-        print("You guessed the word!")
+        print("\n\nYou guessed the word!")
         play_again()
 
 
@@ -57,13 +57,13 @@ def lives(list_of_words, guess):
             life -= 1
             already_guessed.append(guess)
             if 5 >= life > 1:
-                print(f"You have {life} lives left")
+                print(f"\nYou have {life} lives left")
             elif life == 1:
-                print(f"You have {life} life left")
+                print(f"\nYou have {life} life left")
         else:
-            print("You have guessed this letter before")
+            print("\nYou have guessed this letter before")
     if life == 0:
-        print("You lost the game :(")
+        print("\n\nYou lost the game :(")
         play_again()
 
 
@@ -72,7 +72,7 @@ def screen_cleaner():
 
 
 def play_again():
-    again = input("Do you want to play again?")
+    again = input("\nDo you want to play again?")
     if again == "yes" or again == "y":
         print("You sure?")
     else:
@@ -82,7 +82,8 @@ def play_again():
 def information(list_of_words, guess):
     print(''.join(c if c in correct else '_ ' for c in word))
     lives(list_of_words, guess)
-    print(f"Already guessed letters:{already_guessed}")
+    print("\nAlready guessed letters:\n")
+    print(", ".join(already_guessed))
 
 
 correct = []
