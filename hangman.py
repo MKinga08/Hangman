@@ -76,9 +76,14 @@ def screen_cleaner():
 
 
 def play_again():
+    global correct, already_guessed, life
     again = input("\nDo you want to play again?")
     if again == "yes" or again == "y":
-        print("You sure?")
+        screen_cleaner()
+        correct = []
+        already_guessed = []
+        life = 8
+        main()
     else:
         quit()
 
@@ -193,7 +198,8 @@ def main():
         game(wordlist, guessing, choose)
         information(wordlist, guessing, choose)
         if life == 0 or len(correct) == len(choose):
-            play_again()
+            break
+    play_again()
 
 
 if __name__ == "__main__":
