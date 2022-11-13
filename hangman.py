@@ -3,8 +3,16 @@ import random
 
 
 def choosing_random_word():
-    word = random.choice(open("words.txt").read().split())
-    return word
+    try:
+        my_file = open("words.txt", "r")
+        try:
+            word = random.choice(my_file.read().split())
+            print(word)
+            return word
+        finally:
+            my_file.close()
+    except FileNotFoundError:
+        print("File does not exist")
 
 
 def hangman_print():
